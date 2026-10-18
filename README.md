@@ -23,7 +23,7 @@
 Answers one question, with no configuration: **what kind of environment is this code running in?** It detects a single environment type - `local`, `ci`, `development`, `preview`, `stage`, or `production` - from the hosting platform or CI platform the code runs on, and also recognises the local stack (native host or container) beneath it.
 
 - Zero configuration: a single call detects and caches the type.
-- Recognises hosting platforms (Acquia, Lagoon, Pantheon, Platform.sh, Skpr, Tugboat) and CI platforms (GitHub Actions, GitLab CI, CircleCI).
+- Recognises hosting platforms (Acquia, Lagoon, Pantheon, Platform.sh, Render, Skpr, Tugboat, Vercel) and CI platforms (GitHub Actions, GitLab CI, CircleCI).
 - Recognises the stack it runs on (native host, Container, DDEV, Lando).
 - Turnkey Drupal integration: one line in `settings.php` detects the environment and owns all its settings.
 - Extensible with custom platforms, stacks, and contexts, with a safe fallback type.
@@ -149,8 +149,10 @@ A platform is the outermost ring and the only one that decides the type. Built-i
 - [Lagoon](src/Platforms/Lagoon.php)
 - [Pantheon](src/Platforms/Pantheon.php)
 - [Platform.sh](src/Platforms/PlatformSh.php)
+- [Render](src/Platforms/Render.php)
 - [Skpr](src/Platforms/Skpr.php)
 - [Tugboat](src/Platforms/Tugboat.php)
+- [Vercel](src/Platforms/Vercel.php)
 
 ### How platforms map to types
 
@@ -166,6 +168,8 @@ The name-based platforms (Acquia, Pantheon, Skpr) read an environment **name** -
 | Lagoon | `LAGOON_ENVIRONMENT_TYPE` | env-type `production`, or the `ENVIRONMENT_PRODUCTION_BRANCH` branch | `main`/`master`, `release/*`, `hotfix/*` | `develop` branch | env-type `development` on any other branch |
 | Platform.sh | `PLATFORM_ENVIRONMENT_TYPE` | type `production` | type `staging` | type `development` on the `develop` branch | type `development` on any other branch |
 | Tugboat | `TUGBOAT_PREVIEW_ID` | - | - | - | always |
+| Vercel | `VERCEL` + `VERCEL_ENV` | `production` | - | `development` | `preview` (default), `development` |
+| Render | `RENDER` + `RENDER_GIT_BRANCH` | `main`/`master` | `staging`/`stage` | `develop`/`development` | any other branch |
 
 On Lagoon, `main`/`master` resolve to `stage` unless one of them is named by `ENVIRONMENT_PRODUCTION_BRANCH`, in which case it is `production`. The branch names (`main`, `master`, `release/*`, `hotfix/*`, `develop`) are built-in conventions.
 

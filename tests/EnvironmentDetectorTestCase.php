@@ -39,6 +39,8 @@ class EnvironmentDetectorTestCase extends TestCase {
     static::envUnsetPrefix('PLATFORM_');
     static::envUnsetPrefix('SKPR_');
     static::envUnsetPrefix('TUGBOAT_');
+    static::envUnsetPrefix('RENDER_');
+    static::envUnsetPrefix('VERCEL_');
     static::envUnsetPrefix('CIRCLE');
     static::envUnsetPrefix('GITLAB_');
     static::envUnsetPrefix('GITHUB_');

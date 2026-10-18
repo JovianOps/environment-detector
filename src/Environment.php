@@ -14,8 +14,10 @@ use DrevOps\EnvironmentDetector\Platforms\Lagoon;
 use DrevOps\EnvironmentDetector\Platforms\Pantheon;
 use DrevOps\EnvironmentDetector\Platforms\PlatformInterface;
 use DrevOps\EnvironmentDetector\Platforms\PlatformSh;
+use DrevOps\EnvironmentDetector\Platforms\Render;
 use DrevOps\EnvironmentDetector\Platforms\Skpr;
 use DrevOps\EnvironmentDetector\Platforms\Tugboat;
+use DrevOps\EnvironmentDetector\Platforms\Vercel;
 use DrevOps\EnvironmentDetector\Stacks\Container;
 use DrevOps\EnvironmentDetector\Stacks\Ddev;
 use DrevOps\EnvironmentDetector\Stacks\Lando;
@@ -169,8 +171,10 @@ class Environment {
     Lagoon::class,
     Pantheon::class,
     PlatformSh::class,
+    Render::class,
     Skpr::class,
     Tugboat::class,
+    Vercel::class,
   ];
 
   /**
